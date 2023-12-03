@@ -21,7 +21,7 @@ from langchain.chains.question_answering import load_qa_chain
 import langdetect
 import openai
 import tiktoken
-from openai.error import Timeout
+#from openai.error import Timeout
 
 # constants
 #model_name = "gpt-4"  # 'gpt-3'
@@ -90,11 +90,16 @@ def get_model() -> ConversationalRetrievalChain:
 
 
     qa_prompt = PromptTemplate(template=prompt_template, input_variables=["context", "question", "lang"])
+	
+    st.write(qa_prompt)
 
     doc_chain = load_qa_chain(streaming_llm, chain_type="stuff", prompt=qa_prompt)
+    st.write(doc_chain)
 
     qa = ConversationalRetrievalChain(
         retriever=ds.as_retriever(), combine_docs_chain=doc_chain, question_generator=question_generator)
+
+    st.write(qa)
     
     st.session_state.model = qa
 
