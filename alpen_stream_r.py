@@ -21,7 +21,7 @@ from langchain.chains.question_answering import load_qa_chain
 import langdetect
 import openai
 import tiktoken
-from openai import OpenAIEmbed
+#from openai import OpenAIEmbed
 
 # constants
 #model_name = "gpt-4"  # 'gpt-3'
