@@ -246,6 +246,8 @@ if user_question:
     except:
 	    st.write('converstaion error!!')
 
+	
+
 
 ## TEST start
     llm = ChatOpenAI(temperature=0)
@@ -282,7 +284,11 @@ if user_question:
     
     st.session_state.model = qa
 
-    conversation_chain.run( {'question':user_question, 'chat_history':st.session_state.chat_history, 'lang': lang} )
+    try:
+	    conversation_chain.run( {'question':user_question, 'chat_history':st.session_state.chat_history, 'lang': lang} )
+	    
+    except TimeoutError as e:
+	    st.write(f"Timeout error: {e}")
    
 
 
