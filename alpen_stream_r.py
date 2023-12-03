@@ -21,6 +21,10 @@ from langchain.chains.question_answering import load_qa_chain
 import langdetect
 import openai
 import tiktoken
+
+from openai import OpenAI
+client = OpenAI()
+OpenAI.api_key =  st.secrets['OPENAI_API_KEY']
 #from openai.error import Timeout
 
 # constants
@@ -29,7 +33,6 @@ import tiktoken
 #model_name = "gpt-4-0613"
 model_name = "gpt-4-1106-preview"
 
-openai_api_key = st.secrets['OPENAI_API_KEY']
 pinecone_api_key = 'b8aadd4c-6fe0-4de9-8f1e-28794846b692'  # find at app.pinecone.io
 
 #pinecone_api_key = 'f0b3d3aa-2924-4af0-a2c4-934c6daed97b'
@@ -64,12 +67,12 @@ def get_model() -> ConversationalRetrievalChain:
     
     # Construct a ConversationalRetrievalChain with a streaming llm for combine docs
     # and a separate, non-streaming llm for question generation
-    llm = ChatOpenAI(temperature=0,  openai_api_key=openai_api_key)
+    llm = ChatOpenAI(temperature=0,  openai_api_key=api_key)
     #llm = ChatOpenAI()
     handler = StreamlitCallbackHandlerOEHV()
     st.session_state.handler = handler
 
-    streaming_llm = ChatOpenAI(streaming=True, callbacks=[handler], temperature=0, model_name=model_name, max_tokens = 300, openai_api_key=openai_api_key)
+    streaming_llm = ChatOpenAI(streaming=True, callbacks=[handler], temperature=0, model_name=model_name, max_tokens = 300, openai_api_key=api_key)
     #streaming_llm = ChatOpenAI(streaming=True, callbacks=[handler], model_name=model_name)
 
     question_generator = LLMChain(llm=llm, prompt=CONDENSE_QUESTION_PROMPT)
