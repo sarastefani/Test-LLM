@@ -241,6 +241,47 @@ if user_question:
 	    st.write('converstaion error!!')
 
 
+## TEST start
+    llm = ChatOpenAI(temperature=0)
+    #llm = ChatOpenAI()
+    handler = StreamlitCallbackHandlerOEHV()
+    st.session_state.handler = handler
+
+    streaming_llm = ChatOpenAI(streaming=True, callbacks=[handler], temperature=0, model_name=model_name, max_tokens = 300)
+    #streaming_llm = ChatOpenAI(streaming=True, callbacks=[handler], model_name=model_name)
+
+    question_generator = LLMChain(llm=llm, prompt=CONDENSE_QUESTION_PROMPT)
+
+    prompt_template = """You are an AI that only answers questions related to Sportresort Alpenblick. 
+    For requests in English provide this link: https://www.alpenblick.at/en/inquire, for German requests show this link: https://www.alpenblick.at/de/anfragen. 
+    Provide this links only for booking inquieries. The hotels address is: Alte Landesstr. 6, 5700 Zell am See.
+
+    For weather data, get weather from Google.
+
+    Answer in the language of Language in {lang}.
+
+    {context}
+
+    Question: {question}
+    Language:  {lang}
+    Helpful Answer:"""
+
+
+    qa_prompt = PromptTemplate(template=prompt_template, input_variables=["context", "question", "lang"])
+
+    doc_chain = load_qa_chain(streaming_llm, chain_type="stuff", prompt=qa_prompt)
+
+    qa = ConversationalRetrievalChain(
+        retriever=ds.as_retriever(), combine_docs_chain=doc_chain, question_generator=question_generator)
+    
+    st.session_state.model = qa
+   
+
+
+
+## TEST end
+
+
 
     st.markdown(
         "\n\nTo speak with one of our employees, please call us at 0043 6542 5433 or write us on WhatsApp [click here](https://api.whatsapp.com/send/?phone=4367764828204&text=Los+gehts&type=phone_number&app_absent=0) \n"
