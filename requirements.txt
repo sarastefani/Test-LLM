@@ -65,19 +65,19 @@ ruamel.yaml             ==0.17.21
 setuptools              ==67.8.0
 six                     ==1.16.0
 smmap                   ==5.0.0
-SQLAlchemy              ==2.0.16
-streamlit               ==1.23.1
-streamlit-chitchat      ==0.1.7
-tenacity                ==8.2.2
-toml                    ==0.10.2
-toolz                   ==0.12.0
+SQLAlchemy              
+streamlit               
+streamlit-chitchat      
+tenacity                
+toml                   
+toolz                  
 tornado                 ==6.3.2
 tqdm                    ==4.65.0
 typing_extensions       ==4.6.3
 typing-inspect          ==0.9.0
 tzdata                  ==2023.3
 tzlocal                 ==4.3
-urllib3                 ==2.0.3
+urllib3                 
 validators              ==0.20.0
 watchdog                ==3.0.0
 wheel                   ==0.38.4
