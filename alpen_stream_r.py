@@ -146,7 +146,7 @@ def detect_lang(txt):
 
 
 # initialize llm
-embeddings = OpenAIEmbeddings(openai_api_key=openai_api_key)
+embeddings = OpenAIEmbeddings(openai_api_key=api_key)
 
 # initialize pinecone
 #st.write(pinecone.list_indexes())
