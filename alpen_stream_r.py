@@ -275,6 +275,8 @@ if user_question:
         retriever=ds.as_retriever(), combine_docs_chain=doc_chain, question_generator=question_generator)
     
     st.session_state.model = qa
+
+    conversation_chain.run( {'question':user_question, 'chat_history':st.session_state.chat_history, 'lang': lang} )
    
 
 
