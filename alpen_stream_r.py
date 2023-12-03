@@ -69,7 +69,7 @@ def get_model() -> ConversationalRetrievalChain:
     handler = StreamlitCallbackHandlerOEHV()
     st.session_state.handler = handler
 
-    streaming_llm = ChatOpenAI(streaming=True, callbacks=[handler], temperature=0, model_name=model_name, max_tokens = 300)
+    streaming_llm = ChatOpenAI(streaming=True, callbacks=[handler], temperature=0, model_name=model_name, max_tokens = 300, timeout=20)
     #streaming_llm = ChatOpenAI(streaming=True, callbacks=[handler], model_name=model_name)
 
     question_generator = LLMChain(llm=llm, prompt=CONDENSE_QUESTION_PROMPT)
