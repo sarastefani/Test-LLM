@@ -69,6 +69,7 @@ SQLAlchemy
 streamlit               
 streamlit-chitchat      
 tenacity                
+tiktoken
 toml                   
 toolz                  
 tornado                 ==6.3.2
