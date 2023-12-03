@@ -64,12 +64,12 @@ def get_model() -> ConversationalRetrievalChain:
     
     # Construct a ConversationalRetrievalChain with a streaming llm for combine docs
     # and a separate, non-streaming llm for question generation
-    llm = ChatOpenAI(temperature=0)
+    llm = ChatOpenAI(temperature=0,  openai_api_key=openai_api_key)
     #llm = ChatOpenAI()
     handler = StreamlitCallbackHandlerOEHV()
     st.session_state.handler = handler
 
-    streaming_llm = ChatOpenAI(streaming=True, callbacks=[handler], temperature=0, model_name=model_name, max_tokens = 300, timeout=200)
+    streaming_llm = ChatOpenAI(streaming=True, callbacks=[handler], temperature=0, model_name=model_name, max_tokens = 300, openai_api_key=openai_api_key)
     #streaming_llm = ChatOpenAI(streaming=True, callbacks=[handler], model_name=model_name)
 
     question_generator = LLMChain(llm=llm, prompt=CONDENSE_QUESTION_PROMPT)
