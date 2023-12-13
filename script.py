@@ -43,9 +43,7 @@ def main():
     else:
         st.markdown('''
             ```
-            - 1. Please enter the API Key and hit enter.
-
-            - 2. Start your conversation with the text input widget below.
+            - Start your conversation with the text input widget below.
             ```
             ''')
         st.warning(
