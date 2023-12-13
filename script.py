@@ -6,6 +6,11 @@ from langchain.chat_models import ChatOpenAI
 
 
 def main():
+    from openai import OpenAI
+    client = OpenAI()
+    OpenAI.api_key =  st.secrets['OPENAI_API_KEY']
+    api_key =  st.secrets['OPENAI_API_KEY']
+
     st.title("ChatGPT ChatBot🤖")
     st.markdown(
         ''' 
@@ -13,9 +18,7 @@ def main():
             that remembers the context of the conversation.**]
             ''')
 
-    API_KEY = st.text_input(":blue[Enter Your OpenAI API-KEY :]",
-                            placeholder="Please enter your OpenAI API key here",
-                            type="password")
+    API_KEY = api_key
 
     if API_KEY:
         st.write("API-KEY received.")
