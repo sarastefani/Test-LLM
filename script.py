@@ -2,13 +2,14 @@ import streamlit as st
 from langchain.chains import ConversationChain
 from langchain.chains.conversation.memory import ConversationEntityMemory
 from langchain.chains.conversation.prompt import ENTITY_MEMORY_CONVERSATION_TEMPLATE
-#from langchain.chat_models import ChatOpenAI
+from langchain.chat_models import ChatOpenAI
 from langchain.llms import OpenAI
+from openai import OpenAI as AI
 
 
 def main():
     #from openai import OpenAI as AI
-    #client = AI()
+    client = AI()
     #AI.api_key =  st.secrets['OPENAI_API_KEY']
     api_key =  st.secrets['OPENAI_API_KEY']
 
@@ -26,7 +27,7 @@ def main():
 
         MODEL = 'gpt-3.5-turbo'
         # An OpenAI instance
-        llmObj = OpenAI(openai_api_key=API_KEY,
+        llmObj = ChatOpenAI(openai_api_key=API_KEY,
                             model_name=MODEL)
 
         # A ConversationEntityMemory object
