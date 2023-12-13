@@ -2,7 +2,8 @@ import streamlit as st
 from langchain.chains import ConversationChain
 from langchain.chains.conversation.memory import ConversationEntityMemory
 from langchain.chains.conversation.prompt import ENTITY_MEMORY_CONVERSATION_TEMPLATE
-from langchain.chat_models import ChatOpenAI
+#from langchain.chat_models import ChatOpenAI
+from langchain.llms import OpenAI
 
 
 def main():
@@ -25,7 +26,7 @@ def main():
 
         MODEL = 'gpt-3.5-turbo'
         # An OpenAI instance
-        llmObj = ChatOpenAI(openai_api_key=API_KEY,
+        llmObj = OpenAI(openai_api_key=API_KEY,
                             model_name=MODEL)
 
         # A ConversationEntityMemory object
