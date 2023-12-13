@@ -26,7 +26,7 @@ jsonpatch              == 1.32
 jsonpointer            == 2.1
 jsonschema             == 4.17.3
 langchain              
-langchainplus-sdk      == 0.0.8
+langchainplus-sdk      
 loguru                 == 0.7.0
 markdown-it-py         == 2.2.0
 MarkupSafe             == 2.1.3
